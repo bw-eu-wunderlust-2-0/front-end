@@ -36,7 +36,7 @@ const TodoList = props => {
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl("");
   };
 
   const open = Boolean(anchorEl);
@@ -85,8 +85,8 @@ const TodoList = props => {
         label="look up a task"
         variant="outlined"
         name="search"
-        value={null}
-        onChange={null}
+        // value={null}
+        // onChange={null}
         type="text"
       />
       <Button
@@ -126,7 +126,7 @@ const TodoList = props => {
               className={classes.root}
               noValidate
               autoComplete="off"
-              onSubmit={null}
+              // onSubmit={null}
             ></form>
             <form>
               <label>

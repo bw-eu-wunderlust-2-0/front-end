@@ -16,7 +16,7 @@ function Home(props) {
 
   return (
     <Wrapper>
-      {/* <Login /> */}
+      <Login />
       <Register />
       <TodoList />
 

@@ -7,7 +7,7 @@ import Axios from "axios";
 import Login from "./Login";
 
 ////////////// Utils
-// import { axiosWithAuth } from "../Utils/axiosAuth";
+import { axiosWithAuth } from "../Utils/axiosAuth";
 
 //////////////  Styling
 import TextField from "@material-ui/core/TextField";
@@ -42,17 +42,17 @@ const Register = props => {
 
   const RegisterNewUser = event => {
     event.preventDefault();
-    Axios.post(`https://wunderlist-2.herokuapp.com/api/ `, userDetails)
+    axiosWithAuth()
+      .post("/auth/register", userDetails)
       .then(res => {
-        // setAllFriends(res.data);
-        console.log(res);
+        alert(res.data.message);
+        setUserDetails(initialUserDetails);
       })
       .catch(err => err);
   };
 
   return (
     <div>
-      <div></div>
       <form
         className={classes.root}
         noValidate
