@@ -13,6 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
+import { withRouter } from "react-router-dom";
 
 const Register = props => {
   const initialUserDetails = {
@@ -46,7 +47,7 @@ const Register = props => {
       .then(res => {
         window.localStorage.setItem("token", res.data.token);
         alert(res.data.message);
-        props.history.push("/list");
+        props.history.push("/list-of-todos");
         setUserDetails(initialUserDetails);
       })
       .catch(err => console.log(err));
@@ -117,4 +118,4 @@ const Register = props => {
   );
 };
 
-export default Register;
+export default withRouter(Register);
