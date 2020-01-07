@@ -1,14 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-import Axios from "axios";
 
 ////////////// Components
 import Login from "./Login";
 
 ////////////// Utils
 import { axiosWithAuth } from "../Utils/axiosAuth";
-
+import Axios from "axios";
 //////////////  Styling
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -43,12 +42,14 @@ const Register = props => {
   const RegisterNewUser = event => {
     event.preventDefault();
     axiosWithAuth()
-      .post("/auth/register", userDetails)
+      .post("auth/register", userDetails)
       .then(res => {
+        window.localStorage.setItem("token", res.data.token);
         alert(res.data.message);
+        props.history.push("/list");
         setUserDetails(initialUserDetails);
       })
-      .catch(err => err);
+      .catch(err => console.log(err));
   };
 
   return (

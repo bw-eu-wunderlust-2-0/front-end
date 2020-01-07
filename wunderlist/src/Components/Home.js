@@ -4,6 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import TodoList from "./TodoList";
+import PrivateRoute from "../Utils/PrivateRoute";
 
 function Home(props) {
   const Wrapper = styled.div`
@@ -18,9 +19,10 @@ function Home(props) {
     <Wrapper>
       <Login />
       <Register />
-      <TodoList />
-
+      {/* <TodoList /> */}
       <Route exact path="/Register" component={Register} />
+
+      <PrivateRoute exact path="/list-of-todos" component={TodoList} />
     </Wrapper>
   );
 }

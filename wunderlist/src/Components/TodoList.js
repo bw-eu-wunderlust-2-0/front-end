@@ -15,6 +15,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { withRouter } from "react-router-dom";
 
 const TodoList = props => {
   const options = ["Completed", "Daily", "Monthly"];
@@ -43,6 +44,13 @@ const TodoList = props => {
   const id = open ? "simple-popover" : undefined;
 
   const classes = useStyles();
+
+  const onLogout = event => {
+    event.preventDefault();
+    window.localStorage.removeItem("token");
+
+    props.history.push("/");
+  };
 
   return (
     <div>
@@ -95,6 +103,7 @@ const TodoList = props => {
         className={classes.button}
         startIcon={<VpnKeyOutlinedIcon />}
         type="submit"
+        onClick={onLogout}
       >
         LogOut
       </Button>
@@ -177,4 +186,4 @@ const TodoList = props => {
   );
 };
 
-export default TodoList;
+export default withRouter(TodoList);
