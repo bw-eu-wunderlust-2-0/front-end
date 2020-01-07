@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import styled from "styled-components";
 import Login from "./Login";
 import Register from "./Register";
@@ -18,7 +17,7 @@ function Home(props) {
   return (
     <Wrapper>
       {/* <Login /> */}
-      {/* <Register /> */}
+      <Register />
       <TodoList />
 
       <Route exact path="/Register" component={Register} />
