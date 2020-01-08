@@ -88,24 +88,30 @@ const PopOver = props => {
         }}
       >
         <Typography className={classes.typography}>
+          <form className={classes.root} noValidate autoComplete="off"></form>
           <form
-            className={classes.root}
-            noValidate
-            autoComplete="off"
-            // onSubmit={null}
-          ></form>
-          <form>
+            onSubmit={event => props.onTaskFormSubmit(event, props.formTask)}
+          >
             <label>
               Title
-              <input type="text" />
+              <input
+                type="text"
+                placeholder="Type in a title"
+                name="title"
+                onChange={props.onFormValueChange}
+                value={props.formTask.title}
+              />
             </label>
             <TextareaAutosize
               rowsMax={4}
               aria-label="maximum height"
-              placeholder="Maximum 4 rows"
-              defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua."
+              placeholder="Type in a task"
+              //   defaultValue=""
+              onChange={props.onFormValueChange}
+              name="task"
+              value={props.formTask.task}
             />
+            <button type="submit">Submit this task</button>
           </form>
         </Typography>
       </Popover>

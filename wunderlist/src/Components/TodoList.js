@@ -10,10 +10,23 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withRouter } from "react-router-dom";
 import Todo from "./Todo";
 import PopOver from "./Popover";
-import { getTodoList } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
+import {
+  getTodoList,
+  postNewTask,
+  inputChange,
+  submit
+} from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 import { connect } from "react-redux";
 
-const TodoList = ({ toDoArray, getTodoList, ...props }) => {
+const TodoList = ({
+  toDoArray,
+  getTodoList,
+  postNewTask,
+  inputChange,
+  submit,
+  formTask,
+  ...props
+}) => {
   const options = ["Completed", "Daily", "Monthly"];
   const ITEM_HEIGHT = 48;
 
@@ -49,12 +62,18 @@ const TodoList = ({ toDoArray, getTodoList, ...props }) => {
 
   useEffect(() => {
     getTodoList();
-  }, []);
+  }, [toDoArray]);
 
-  const testing = [12, 12, 44, 22];
-  console.log(testing);
+  const onFormValueChange = event => {
+    inputChange(event.target.name, event.target.value);
+  };
 
-  console.log(toDoArray);
+  const onTaskFormSubmit = (event, form) => {
+    event.preventDefault();
+    postNewTask(form);
+    submit();
+  };
+
   return (
     <div>
       <div>
@@ -110,25 +129,29 @@ const TodoList = ({ toDoArray, getTodoList, ...props }) => {
       >
         LogOut
       </Button>
-      <PopOver />
+      <PopOver
+        onFormValueChange={onFormValueChange}
+        onTaskFormSubmit={onTaskFormSubmit}
+        formTask={formTask}
+      />
 
       {toDoArray.map(item => {
         return <Todo aTask={item} />;
       })}
-      {/* <Todo aTask={toDoArray} /> */}
-      {/* {testing.map(item => {
-        return item;
-      })} */}
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    toDoArray: state.toDoList
+    toDoArray: state.toDoList,
+    formTask: state.taskForm
   };
 };
 
 export default connect(mapStateToProps, {
-  getTodoList
+  getTodoList,
+  postNewTask,
+  inputChange,
+  submit
 })(withRouter(TodoList));
