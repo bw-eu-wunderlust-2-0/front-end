@@ -88,7 +88,7 @@ const Login = props => {
         </Button>
       </form>
       <NavLink exact to="/Register">
-        Are you Registered ?
+        Don't have an account ? Register now.
       </NavLink>
     </div>
   );
