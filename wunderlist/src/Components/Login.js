@@ -4,9 +4,9 @@ import { axiosWithAuth } from "../Utils/axiosAuth";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
-import { withRouter } from "react-router-dom";
+import { withRouter, NavLink } from "react-router-dom";
 
-import { BrowserRouter as NavLink } from "react-router-dom";
+// import { BrowserRouter as NavLink } from "react-router-dom";
 // import Register from "./Register";
 // import Home from "./Home";
 
@@ -88,7 +88,7 @@ const Login = props => {
         </Button>
       </form>
       <NavLink exact to="/Register">
-        <p>Are you Registered ?</p>
+        Are you Registered ?
       </NavLink>
     </div>
   );
