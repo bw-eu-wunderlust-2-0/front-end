@@ -1,10 +1,8 @@
 import React from "react";
-import { useState} from "react";
+import { useState } from "react";
 // import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
-
 ////////////// Components
 // import Login from "./Login";
-
 ////////////// Utils
 import { axiosWithAuth } from "../Utils/axiosAuth";
 // import Axios from "axios";
@@ -37,9 +35,7 @@ const Register = props => {
       maxWidth: 345
     }
   });
-
   const classes = useStyles();
-
   const RegisterNewUser = event => {
     event.preventDefault();
     axiosWithAuth()

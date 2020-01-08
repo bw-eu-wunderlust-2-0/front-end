@@ -11,6 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 // import { getTodoList } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 
 const Todo = props => {
+  //   console.log(props);
+
   const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 345
@@ -35,11 +37,10 @@ const Todo = props => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              work on some project
+              {props.aTask.title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              {props.aTask.task}
             </Typography>
           </CardContent>
         </CardActionArea>

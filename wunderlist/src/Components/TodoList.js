@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -13,7 +13,7 @@ import PopOver from "./Popover";
 import { getTodoList } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 import { connect } from "react-redux";
 
-const TodoList = props => {
+const TodoList = ({ toDoArray, getTodoList, ...props }) => {
   const options = ["Completed", "Daily", "Monthly"];
   const ITEM_HEIGHT = 48;
 
@@ -44,10 +44,17 @@ const TodoList = props => {
   const onLogout = event => {
     event.preventDefault();
     window.localStorage.removeItem("token");
-
     props.history.push("/");
   };
 
+  useEffect(() => {
+    getTodoList();
+  }, []);
+
+  const testing = [12, 12, 44, 22];
+  console.log(testing);
+
+  console.log(toDoArray);
   return (
     <div>
       <div>
@@ -104,7 +111,14 @@ const TodoList = props => {
         LogOut
       </Button>
       <PopOver />
-      <Todo />
+
+      {toDoArray.map(item => {
+        return <Todo aTask={item} />;
+      })}
+      {/* <Todo aTask={toDoArray} /> */}
+      {/* {testing.map(item => {
+        return item;
+      })} */}
     </div>
   );
 };
