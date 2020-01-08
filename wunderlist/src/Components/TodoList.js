@@ -10,6 +10,8 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withRouter } from "react-router-dom";
 import Todo from "./Todo";
 import PopOver from "./Popover";
+import { getTodoList } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
+import { connect } from "react-redux";
 
 const TodoList = props => {
   const options = ["Completed", "Daily", "Monthly"];
@@ -107,4 +109,12 @@ const TodoList = props => {
   );
 };
 
-export default withRouter(TodoList);
+const mapStateToProps = state => {
+  return {
+    toDoArray: state.toDoList
+  };
+};
+
+export default connect(mapStateToProps, {
+  getTodoList
+})(withRouter(TodoList));

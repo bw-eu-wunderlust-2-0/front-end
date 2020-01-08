@@ -7,8 +7,8 @@ import VpnKeyOutlinedIcon from "@material-ui/icons/VpnKeyOutlined";
 import { withRouter, NavLink } from "react-router-dom";
 
 // import { BrowserRouter as NavLink } from "react-router-dom";
-// import Register from "./Register";
-// import Home from "./Home";
+import Register from "./Register";
+import Home from "./Home";
 
 const Login = props => {
   const useStyles = makeStyles({

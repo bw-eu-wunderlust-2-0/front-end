@@ -7,6 +7,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 // import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { makeStyles } from "@material-ui/core/styles";
+// import { connect } from "react-redux";
+// import { getTodoList } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 
 const Todo = props => {
   const useStyles = makeStyles(theme => ({
@@ -46,4 +48,5 @@ const Todo = props => {
     </div>
   );
 };
+
 export default Todo;

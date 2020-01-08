@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Login from "./Login";
 import Register from "./Register";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import TodoList from "./TodoList";
+import { Route } from "react-router-dom";
+import TodoList from "../Components/TodoList";
 import PrivateRoute from "../Utils/PrivateRoute";
+// import { axiosWithAuth } from "../Utils/axiosAuth";
 
 function Home(props) {
   const Wrapper = styled.div`
@@ -17,14 +18,9 @@ function Home(props) {
 
   return (
     <Wrapper>
-      {/* <Switch> */}
       <Route exact path="/" component={Login} />
-      {/* <Register /> */}
-      {/* <TodoList /> */}
       <Route exact path="/Register" component={Register} />
-
       <PrivateRoute exact path="/list-of-todos" component={TodoList} />
-      {/* </Switch> */}
     </Wrapper>
   );
 }
