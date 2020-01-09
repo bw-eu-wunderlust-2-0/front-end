@@ -6,7 +6,7 @@ export const getTodoList = () => dispatch => {
     .get("/todos")
     .then(res => {
       const todos = res.data;
-      console.log(todos);
+    //   console.log(todos);
       dispatch({
         type: types.GET_TODOS,
         payload: todos
