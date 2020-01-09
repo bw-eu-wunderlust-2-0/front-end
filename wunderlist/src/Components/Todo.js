@@ -72,6 +72,17 @@ const Todo = props => {
             >
               delete
             </button>
+
+            <button
+              style={{
+                background: "green",
+                fontWeight: "bold",
+                boxShadow: " 5px 5px 5px yellow"
+              }}
+              onClick={() => props.updateTask(props.aTask.id, props.formTask)}
+            >
+              Update
+            </button>
           </CardContent>
         </CardActionArea>
         <CardActions></CardActions>

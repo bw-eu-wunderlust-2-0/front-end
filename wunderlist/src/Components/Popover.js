@@ -8,9 +8,9 @@ import DateFnsUtils from "@date-io/date-fns";
 // import {
 //   MuiPickersUtilsProvider,
 //   KeyboardTimePicker,
-//   KeyboardDatePicker
-// } from "@material-ui-pickers/utils/MuiPickersUtilsProvider";
-// import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
+//   KeyboardDatePicker,
+// } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, InlineDatePicker } from "material-ui-pickers";
 
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
@@ -91,7 +91,7 @@ const PopOver = props => {
         color="primary"
         onClick={handleClick}
       >
-        Make a new task
+        Make a new task/EDIT
       </Button>
       <Popover
         id={id}
@@ -131,17 +131,13 @@ const PopOver = props => {
               name="task"
               value={props.formTask.task}
             />
-            {/* <KeyboardDatePicker
-              margin="normal"
-              id="date-picker-dialog"
-              label="Date picker dialog"
-              format="MM/dd/yyyy"
-              value={selectedDate}
-              onChange={handleDateChange}
-              KeyboardButtonProps={{
-                "aria-label": "change date"
-              }}
-            /> */}
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <div className="App">
+        <h1>Hello CodeSandbox</h1>
+        <h2>Start editing to see some magic happen!</h2>
+        <InlineDatePicker onChange={console.log} value={new Date()} />
+      </div>
+    </MuiPickersUtilsProvider>
             <button type="submit">Submit this task</button>
           </form>
         </Typography>

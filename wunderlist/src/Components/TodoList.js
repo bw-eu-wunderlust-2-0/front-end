@@ -16,7 +16,8 @@ import {
   inputChange,
   submit,
   searchInputChange,
-  deleteTask
+  deleteTask,
+  updateTask
 } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 import { connect } from "react-redux";
 
@@ -30,6 +31,7 @@ const TodoList = ({
   formSearch,
   searchInputChange,
   deleteTask,
+  updateTask,
   ...props
 }) => {
   const options = ["Completed", "Daily", "Monthly"];
@@ -148,9 +150,17 @@ const TodoList = ({
         formTask={formTask}
       />
 
-      {toDoArray.map(item => {
-        return <Todo aTask={item} deleteTask={deleteTask} />;
-      })}
+      {toDoArray &&
+        toDoArray.map(item => {
+          return (
+            <Todo
+              aTask={item}
+              deleteTask={deleteTask}
+              updateTask={updateTask}
+              formTask={formTask}
+            />
+          );
+        })}
     </div>
   );
 };
@@ -169,5 +179,6 @@ export default connect(mapStateToProps, {
   inputChange,
   submit,
   searchInputChange,
-  deleteTask
+  deleteTask,
+  updateTask
 })(withRouter(TodoList));

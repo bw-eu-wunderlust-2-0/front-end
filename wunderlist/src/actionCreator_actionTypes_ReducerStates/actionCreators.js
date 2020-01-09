@@ -44,6 +44,16 @@ export const deleteTask = (theid, item) => dispatch => {
     .catch(err => err);
 };
 
+export const updateTask = (theid, taskToUpdate) => dispatch => {
+  axiosWithAuth()
+    .put(`/todos/${theid}`, taskToUpdate)
+    .then(res => {
+      console.log(res.data);
+    //   getTodoList();
+    })
+    .catch(err => err);
+};
+
 export const inputChange = (name, value) => {
   return {
     type: types.INPUT_CHANGE,
