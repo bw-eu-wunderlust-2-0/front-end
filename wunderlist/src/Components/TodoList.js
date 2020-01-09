@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -10,10 +10,30 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { withRouter } from "react-router-dom";
 import Todo from "./Todo";
 import PopOver from "./Popover";
-import { getTodoList } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
+import {
+  getTodoList,
+  postNewTask,
+  inputChange,
+  submit,
+  searchInputChange,
+  deleteTask,
+  updateTask
+} from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 import { connect } from "react-redux";
 
-const TodoList = props => {
+const TodoList = ({
+  toDoArray,
+  getTodoList,
+  postNewTask,
+  inputChange,
+  submit,
+  formTask,
+  formSearch,
+  searchInputChange,
+  deleteTask,
+  updateTask,
+  ...props
+}) => {
   const options = ["Completed", "Daily", "Monthly"];
   const ITEM_HEIGHT = 48;
 
@@ -39,14 +59,35 @@ const TodoList = props => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  console.log(id);
+
   const classes = useStyles();
 
   const onLogout = event => {
     event.preventDefault();
     window.localStorage.removeItem("token");
-
     props.history.push("/");
   };
+
+  useEffect(() => {
+    getTodoList();
+  }, [toDoArray]);
+
+  const onFormValueChange = event => {
+    inputChange(event.target.name, event.target.value);
+  };
+
+  const onTaskFormSubmit = (event, form) => {
+    event.preventDefault();
+    postNewTask(form);
+    submit();
+  };
+
+  const onSearchQueryChange = event => {
+    searchInputChange(event.target.name, event.target.value);
+  };
+
+  // const wordMatches = toDoArray.filter((item, word) => item.includes(word));
 
   return (
     <div>
@@ -88,9 +129,9 @@ const TodoList = props => {
         id="outlined-basicc"
         label="look up a task"
         variant="outlined"
-        name="search"
-        // value={null}
-        // onChange={null}
+        name="searchInput"
+        value={formSearch.searchInput}
+        onChange={onSearchQueryChange}
         type="text"
       />
       <Button
@@ -103,18 +144,41 @@ const TodoList = props => {
       >
         LogOut
       </Button>
-      <PopOver />
-      <Todo />
+      <PopOver
+        onFormValueChange={onFormValueChange}
+        onTaskFormSubmit={onTaskFormSubmit}
+        formTask={formTask}
+      />
+
+      {toDoArray &&
+        toDoArray.map(item => {
+          return (
+            <Todo
+              aTask={item}
+              deleteTask={deleteTask}
+              updateTask={updateTask}
+              formTask={formTask}
+            />
+          );
+        })}
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    toDoArray: state.toDoList
+    toDoArray: state.toDoList,
+    formTask: state.taskForm,
+    formSearch: state.searchForm
   };
 };
 
 export default connect(mapStateToProps, {
-  getTodoList
+  getTodoList,
+  postNewTask,
+  inputChange,
+  submit,
+  searchInputChange,
+  deleteTask,
+  updateTask
 })(withRouter(TodoList));

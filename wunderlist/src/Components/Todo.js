@@ -11,6 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 // import { getTodoList } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 
 const Todo = props => {
+  //   console.log(props);
+
   const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 345
@@ -34,13 +36,53 @@ const Todo = props => {
             title="Random image for a task"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              work on some project
+            <Typography
+              gutterBottom
+              variant="h3"
+              component="h3"
+              color="Primary"
+            >
+              {props.aTask.title}
+            </Typography>
+            <Typography variant="h5" color="textSecondary" component="p">
+              {props.aTask.task}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              Due for : {props.aTask.setDate}
             </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              Created at : {props.aTask.created_at}
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              Updated at : {props.aTask.updated_at}
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              Frequency : {props.aTask.notes}
+            </Typography>
+            <button
+              style={{
+                background: "red",
+                fontWeight: "bold",
+                boxShadow: " 5px 5px 5px blue"
+              }}
+              onClick={() => props.deleteTask(props.aTask.id)}
+            >
+              delete
+            </button>
+
+            <button
+              style={{
+                background: "green",
+                fontWeight: "bold",
+                boxShadow: " 5px 5px 5px yellow"
+              }}
+              onClick={() => props.updateTask(props.aTask.id, props.formTask)}
+            >
+              Update
+            </button>
           </CardContent>
         </CardActionArea>
         <CardActions></CardActions>

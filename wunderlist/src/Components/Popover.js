@@ -3,6 +3,15 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardTimePicker,
+//   KeyboardDatePicker,
+// } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, InlineDatePicker } from "material-ui-pickers";
+
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -28,6 +37,7 @@ const PopOver = props => {
       {...props}
     />
   ));
+  console.log(StyledMenu);
 
   const StyledMenuItem = withStyles(theme => ({
     root: {
@@ -39,6 +49,8 @@ const PopOver = props => {
       }
     }
   }))(MenuItem);
+
+  console.log(StyledMenuItem);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -63,6 +75,14 @@ const PopOver = props => {
   }));
   const classes = useStyles();
 
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date("2014-08-18T21:11:54")
+  );
+
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
+
   return (
     <div className="pop-over">
       <Button
@@ -71,7 +91,7 @@ const PopOver = props => {
         color="primary"
         onClick={handleClick}
       >
-        Make a new task
+        Make a new task/EDIT
       </Button>
       <Popover
         id={id}
@@ -88,24 +108,37 @@ const PopOver = props => {
         }}
       >
         <Typography className={classes.typography}>
+          <form className={classes.root} noValidate autoComplete="off"></form>
           <form
-            className={classes.root}
-            noValidate
-            autoComplete="off"
-            // onSubmit={null}
-          ></form>
-          <form>
+            onSubmit={event => props.onTaskFormSubmit(event, props.formTask)}
+          >
             <label>
               Title
-              <input type="text" />
+              <input
+                type="text"
+                placeholder="Type in a title"
+                name="title"
+                onChange={props.onFormValueChange}
+                value={props.formTask.title}
+              />
             </label>
             <TextareaAutosize
               rowsMax={4}
               aria-label="maximum height"
-              placeholder="Maximum 4 rows"
-              defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua."
+              placeholder="Type in a task"
+              //   defaultValue=""
+              onChange={props.onFormValueChange}
+              name="task"
+              value={props.formTask.task}
             />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <div className="App">
+        <h1>Hello CodeSandbox</h1>
+        <h2>Start editing to see some magic happen!</h2>
+        <InlineDatePicker onChange={console.log} value={new Date()} />
+      </div>
+    </MuiPickersUtilsProvider>
+            <button type="submit">Submit this task</button>
           </form>
         </Typography>
       </Popover>
