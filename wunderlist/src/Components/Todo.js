@@ -5,14 +5,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-// import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { makeStyles } from "@material-ui/core/styles";
-// import { connect } from "react-redux";
-// import { getTodoList } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 
 const Todo = props => {
-  //   console.log(props);
-
   const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 345
@@ -28,13 +23,13 @@ const Todo = props => {
     <div className="task-list">
       <Card className={classes.card}>
         <CardActionArea>
-          <CardMedia
+          {/* <CardMedia
             component="img"
             alt="Random image for a task"
             height="140"
             image="/static/images/cards/contemplative-reptile.jpg"
             title="Random image for a task"
-          />
+          /> */}
           <CardContent>
             <Typography
               gutterBottom

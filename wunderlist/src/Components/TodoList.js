@@ -59,7 +59,7 @@ const TodoList = ({
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  console.log(id);
+  // console.log(id);
 
   const classes = useStyles();
 
@@ -87,7 +87,11 @@ const TodoList = ({
     searchInputChange(event.target.name, event.target.value);
   };
 
-  // const wordMatches = toDoArray.filter((item, word) => item.includes(word));
+  const searchingFor = toDoArray.filter(task =>
+    task.title.toLowerCase().includes(formSearch.searchInput.toLowerCase())
+  );
+
+  // console.log(searchingFor);
 
   return (
     <div>
@@ -149,8 +153,17 @@ const TodoList = ({
         onTaskFormSubmit={onTaskFormSubmit}
         formTask={formTask}
       />
-
-      {toDoArray &&
+      {searchingFor.map(item => {
+        return (
+          <Todo
+            aTask={item}
+            deleteTask={deleteTask}
+            updateTask={updateTask}
+            formTask={formTask}
+          />
+        );
+      })}
+      {/* {toDoArray &&
         toDoArray.map(item => {
           return (
             <Todo
@@ -160,7 +173,7 @@ const TodoList = ({
               formTask={formTask}
             />
           );
-        })}
+        })} */}
     </div>
   );
 };

@@ -10,7 +10,7 @@ import DateFnsUtils from "@date-io/date-fns";
 //   KeyboardTimePicker,
 //   KeyboardDatePicker,
 // } from '@material-ui/pickers';
-import { MuiPickersUtilsProvider, InlineDatePicker } from "material-ui-pickers";
+// import { MuiPickersUtilsProvider, InlineDatePicker } from "material-ui-pickers";
 
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
@@ -37,7 +37,7 @@ const PopOver = props => {
       {...props}
     />
   ));
-  console.log(StyledMenu);
+//   console.log(StyledMenu);
 
   const StyledMenuItem = withStyles(theme => ({
     root: {
@@ -50,7 +50,7 @@ const PopOver = props => {
     }
   }))(MenuItem);
 
-  console.log(StyledMenuItem);
+//   console.log(StyledMenuItem);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -131,13 +131,13 @@ const PopOver = props => {
               name="task"
               value={props.formTask.task}
             />
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <div className="App">
         <h1>Hello CodeSandbox</h1>
         <h2>Start editing to see some magic happen!</h2>
         <InlineDatePicker onChange={console.log} value={new Date()} />
       </div>
-    </MuiPickersUtilsProvider>
+    </MuiPickersUtilsProvider> */}
             <button type="submit">Submit this task</button>
           </form>
         </Typography>
