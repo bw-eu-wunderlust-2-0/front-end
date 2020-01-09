@@ -43,3 +43,13 @@ export const submit = () => {
     type: types.SUBMIT
   };
 };
+
+export const searchInputChange = (name, value) => {
+  return {
+    type: types.SEARCH_INPUT_CHANGE,
+    payload: {
+      name,
+      value
+    }
+  };
+};

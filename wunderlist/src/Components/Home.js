@@ -9,7 +9,7 @@ import PrivateRoute from "../Utils/PrivateRoute";
 
 function Home(props) {
   const Wrapper = styled.div`
-    background: linear-gradient(red, blue);
+    background: linear-gradient(purple, red);
     min-height: 1000px;
     display: flex;
     justify-content: center;

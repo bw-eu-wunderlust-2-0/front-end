@@ -46,3 +46,21 @@ export const taskFormReducer = (form = initialToDoFormValues, action) => {
       return form;
   }
 };
+
+const searchQueryValue = {
+  searchInput: ""
+};
+
+export const searchFormReducer = (searchValue = searchQueryValue, action) => {
+  switch (action.type) {
+    case types.SEARCH_INPUT_CHANGE:
+      return {
+        ...searchValue,
+        [action.payload.name]: action.payload.value
+      };
+    case types.SUBMIT:
+      return searchQueryValue;
+    default:
+      return searchValue;
+  }
+};

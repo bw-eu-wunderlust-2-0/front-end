@@ -7,3 +7,4 @@ export const SEARCH_TASKS = "SEARCH_TASKS";
 export const GET_TODOS = "GET_TODOS";
 export const INPUT_CHANGE = "INPUT_CHANGE";
 export const SUBMIT = "SUBMIT";
+export const SEARCH_INPUT_CHANGE = "SEARCH_INPUT_CHANGE";

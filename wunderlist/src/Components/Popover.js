@@ -3,6 +3,16 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardTimePicker,
+//   KeyboardDatePicker
+// } from "@material-ui-pickers/utils/MuiPickersUtilsProvider";
+// import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
+
 import Popover from "@material-ui/core/Popover";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -28,6 +38,7 @@ const PopOver = props => {
       {...props}
     />
   ));
+  console.log(StyledMenu);
 
   const StyledMenuItem = withStyles(theme => ({
     root: {
@@ -39,6 +50,8 @@ const PopOver = props => {
       }
     }
   }))(MenuItem);
+
+  console.log(StyledMenuItem);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -62,6 +75,14 @@ const PopOver = props => {
     }
   }));
   const classes = useStyles();
+
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date("2014-08-18T21:11:54")
+  );
+
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
 
   return (
     <div className="pop-over">
@@ -111,6 +132,17 @@ const PopOver = props => {
               name="task"
               value={props.formTask.task}
             />
+            {/* <KeyboardDatePicker
+              margin="normal"
+              id="date-picker-dialog"
+              label="Date picker dialog"
+              format="MM/dd/yyyy"
+              value={selectedDate}
+              onChange={handleDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change date"
+              }}
+            /> */}
             <button type="submit">Submit this task</button>
           </form>
         </Typography>

@@ -36,11 +36,31 @@ const Todo = props => {
             title="Random image for a task"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography
+              gutterBottom
+              variant="h3"
+              component="h3"
+              color="Primary"
+            >
               {props.aTask.title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="h5" color="textSecondary" component="p">
               {props.aTask.task}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              Due for : {props.aTask.setDate}
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              Created at : {props.aTask.created_at}
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              Updated at : {props.aTask.updated_at}
+            </Typography>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+              Frequency : {props.aTask.notes}
             </Typography>
           </CardContent>
         </CardActionArea>

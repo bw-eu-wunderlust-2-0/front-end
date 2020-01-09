@@ -14,7 +14,8 @@ import {
   getTodoList,
   postNewTask,
   inputChange,
-  submit
+  submit,
+  searchInputChange
 } from "../actionCreator_actionTypes_ReducerStates/actionCreators";
 import { connect } from "react-redux";
 
@@ -25,6 +26,8 @@ const TodoList = ({
   inputChange,
   submit,
   formTask,
+  formSearch,
+  searchInputChange,
   ...props
 }) => {
   const options = ["Completed", "Daily", "Monthly"];
@@ -52,6 +55,8 @@ const TodoList = ({
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  console.log(id);
+
   const classes = useStyles();
 
   const onLogout = event => {
@@ -73,6 +78,12 @@ const TodoList = ({
     postNewTask(form);
     submit();
   };
+
+  const onSearchQueryChange = event => {
+    searchInputChange(event.target.name, event.target.value);
+  };
+
+  // const wordMatches = toDoArray.filter((item, word) => item.includes(word));
 
   return (
     <div>
@@ -114,9 +125,9 @@ const TodoList = ({
         id="outlined-basicc"
         label="look up a task"
         variant="outlined"
-        name="search"
-        // value={null}
-        // onChange={null}
+        name="searchInput"
+        value={formSearch.searchInput}
+        onChange={onSearchQueryChange}
         type="text"
       />
       <Button
@@ -145,7 +156,8 @@ const TodoList = ({
 const mapStateToProps = state => {
   return {
     toDoArray: state.toDoList,
-    formTask: state.taskForm
+    formTask: state.taskForm,
+    formSearch: state.searchForm
   };
 };
 
@@ -153,5 +165,6 @@ export default connect(mapStateToProps, {
   getTodoList,
   postNewTask,
   inputChange,
-  submit
+  submit,
+  searchInputChange
 })(withRouter(TodoList));

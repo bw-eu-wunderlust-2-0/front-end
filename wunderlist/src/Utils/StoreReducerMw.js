@@ -1,17 +1,19 @@
-import React from "react";
+// import React from "react";
 
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import thunk from "redux-thunk";
 
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import {
   toDoReducer,
-  taskFormReducer
+  taskFormReducer,
+  searchFormReducer
 } from "../actionCreator_actionTypes_ReducerStates/reducers";
 
 const generalReducer = combineReducers({
   toDoList: toDoReducer,
-  taskForm: taskFormReducer
+  taskForm: taskFormReducer,
+  searchForm: searchFormReducer
 });
 
 export const store = createStore(
