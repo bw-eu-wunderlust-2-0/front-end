@@ -62,6 +62,16 @@ const Todo = props => {
             <Typography variant="body2" color="textSecondary" component="p">
               Frequency : {props.aTask.notes}
             </Typography>
+            <button
+              style={{
+                background: "red",
+                fontWeight: "bold",
+                boxShadow: " 5px 5px 5px blue"
+              }}
+              onClick={() => props.deleteTask(props.aTask.id)}
+            >
+              delete
+            </button>
           </CardContent>
         </CardActionArea>
         <CardActions></CardActions>

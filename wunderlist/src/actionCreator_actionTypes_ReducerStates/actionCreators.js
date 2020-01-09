@@ -6,7 +6,7 @@ export const getTodoList = () => dispatch => {
     .get("/todos")
     .then(res => {
       const todos = res.data;
-        console.log(todos);
+      console.log(todos);
       dispatch({
         type: types.GET_TODOS,
         payload: todos
@@ -20,6 +20,22 @@ export const postNewTask = newTaskData => dispatch => {
     .post("/todos", newTaskData)
     .then(res => {
       console.log(res.data);
+      dispatch({
+        type: types.GET_TODOS,
+        payload: res.data
+      });
+    })
+    .catch(err => err);
+};
+
+export const deleteTask = (theid, item) => dispatch => {
+  axiosWithAuth()
+    .delete("/todos/" + theid)
+    .then(res => {
+      // getListOfFriends();
+      item.filter(task => task.id !== theid); // updates front end faster without a network request
+
+      console.log("CONSOLE OUTPUT: delete -> res.data", res.data);
       dispatch({
         type: types.GET_TODOS,
         payload: res.data
