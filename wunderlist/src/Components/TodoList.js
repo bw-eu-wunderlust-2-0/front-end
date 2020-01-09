@@ -88,7 +88,7 @@ const TodoList = ({
   };
 
   const searchingFor = toDoArray.filter(task =>
-    task.title.toLowerCase().includes(formSearch.searchInput)
+    task.title.toLowerCase().includes(formSearch.searchInput.toLowerCase())
   );
 
   // console.log(searchingFor);
@@ -153,7 +153,6 @@ const TodoList = ({
         onTaskFormSubmit={onTaskFormSubmit}
         formTask={formTask}
       />
-      {/* <p>{formSearch.searchInput}</p> */}
       {searchingFor.map(item => {
         return (
           <Todo
