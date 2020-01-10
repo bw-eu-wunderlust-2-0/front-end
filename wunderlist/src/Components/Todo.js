@@ -32,7 +32,7 @@ const Todo = props => {
           /> */}
           <CardContent
             style={{
-              background: props.aTask.completed ? "green" : "task not completed"
+              background: props.aTask.completed ? "green" : "white"
             }}
           >
             <Typography
@@ -40,6 +40,9 @@ const Todo = props => {
               variant="h3"
               component="h3"
               color="Primary"
+              style={{
+                textDecoration: props.aTask.completed && "line-through"
+              }}
             >
               {props.aTask.title}
             </Typography>
