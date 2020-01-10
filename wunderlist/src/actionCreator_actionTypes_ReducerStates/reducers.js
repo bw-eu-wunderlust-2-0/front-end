@@ -29,8 +29,8 @@ const initialToDoFormValues = {
   notes: "something",
   setDate: "2020-10-24",
   completed: false,
-  created_at: "2020-10-24T12:36:27.625Z",
-  updated_at: "2020-10-24T12:36:27.625Z"
+//   created_at: "2020-10-24T12:36:27.625Z",
+//   updated_at: "2020-10-24T12:36:27.625Z"
 };
 
 export const taskFormReducer = (form = initialToDoFormValues, action) => {

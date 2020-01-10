@@ -37,7 +37,7 @@ const PopOver = props => {
       {...props}
     />
   ));
-//   console.log(StyledMenu);
+  //   console.log(StyledMenu);
 
   const StyledMenuItem = withStyles(theme => ({
     root: {
@@ -50,7 +50,7 @@ const PopOver = props => {
     }
   }))(MenuItem);
 
-//   console.log(StyledMenuItem);
+  //   console.log(StyledMenuItem);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -131,6 +131,12 @@ const PopOver = props => {
               name="task"
               value={props.formTask.task}
             />
+
+            <label class="container">
+              Completed ?
+              <input type="checkbox" name="completed" onChange={props.onFormValueChange} />
+              <span class="checkmark"></span>
+            </label>
             {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <div className="App">
         <h1>Hello CodeSandbox</h1>
