@@ -30,12 +30,19 @@ const Todo = props => {
             image="/static/images/cards/contemplative-reptile.jpg"
             title="Random image for a task"
           /> */}
-          <CardContent>
+          <CardContent
+            style={{
+              background: props.aTask.completed ? "green" : "white"
+            }}
+          >
             <Typography
               gutterBottom
               variant="h3"
               component="h3"
               color="Primary"
+              style={{
+                textDecoration: props.aTask.completed && "line-through"
+              }}
             >
               {props.aTask.title}
             </Typography>
@@ -57,6 +64,11 @@ const Todo = props => {
             <Typography variant="body2" color="textSecondary" component="p">
               Frequency : {props.aTask.notes}
             </Typography>
+
+            <p>
+              Status of the task :
+              {props.aTask.completed ? "Task completed" : "task not completed"}
+            </p>
             <button
               style={{
                 background: "red",
